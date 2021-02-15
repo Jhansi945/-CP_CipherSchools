@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std;
+string keypad[]={" "," ","abc","def","ghi","jkl","mnop","qrs","tuv","wxyz"};
+void generate(string s,vector<string>&v,int index,string res)
+{
+	if(index==s.length())
+	{
+		v.push_back(res);
+		return;
+	}
+	string p=keypad[s[index]-'0'];
+	for(int i=0;i<p.size();i++)
+	{
+		res+=p[i];
+		generate(s,v,index+1,res);
+		res.pop_back();
+	}
+}
+vector<string> get(string s)
+{
+	vector<string>result;
+	generate(s,result,0," ");
+	return result;
+}
+int main()
+{
+	//string s;
+	//cin>>s;
+	vector<string>v=get("2");
+	for(string s1:v)
+	{
+		cout<<s1<<endl;
+	}
+	return 0;
+}
